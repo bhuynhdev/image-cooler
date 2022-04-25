@@ -1,5 +1,14 @@
-<form>
-  <input type="file" name="inputFile" id="inputFile" />
-  <label for="inputFile"></label>
+<form (submit)="onSubmit($event)">
+  <input
+    type="file"
+    name="file"
+    id="inputFile"
+    required
+    (change)="previewImage($event)"
+  />
+  <label for="inputFile">File to upload</label>
+  <div class="preview" *ngIf="uploadedImage && uploadedImage !== null">
+    <img [src]="uploadedImage" alt="Uploaded Image" />
+  </div>
   <button type="submit">Upload</button>
 </form>
