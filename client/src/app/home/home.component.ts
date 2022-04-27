@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  uploadedImage = '';
+  uploadedImage!: File;
+  uploadedImageSrc = '';
 
   constructor() {}
 
@@ -15,20 +16,23 @@ export class HomeComponent implements OnInit {
   // Image Preview
   previewImage($event: Event) {
     const reader = new FileReader();
-
     const target = $event.target as HTMLInputElement;
 
     if (target.files && target.files.length) {
       const uploadedFile = target.files[0];
       reader.readAsDataURL(uploadedFile);
+      this.uploadedImage = uploadedFile;
 
       reader.onload = () => {
-        this.uploadedImage = reader.result as string;
+        this.uploadedImageSrc = reader.result as string;
       };
     }
   }
 
   onSubmit($event: Event) {
     $event.preventDefault();
+    const formData = new FormData();
+    formData.append('file', this.uploadedImage, this.uploadedImage.name);
+    console.log(formData);
   }
 }

@@ -8,7 +8,7 @@
   />
   <label for="inputFile">File to upload</label>
   <div class="preview" *ngIf="uploadedImage && uploadedImage !== null">
-    <img [src]="uploadedImage" alt="Uploaded Image" />
+    <img [src]="uploadedImageSrc" alt="Uploaded Image" />
   </div>
   <button type="submit">Upload</button>
 </form>
