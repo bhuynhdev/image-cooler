@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ImageService } from 'src/app/services/image.service';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ export class HomeComponent implements OnInit {
   uploadedImage!: File;
   uploadedImageSrc = '';
 
-  constructor() {}
+  constructor(private imageService: ImageService) {}
 
   ngOnInit(): void {}
 
@@ -31,8 +32,6 @@ export class HomeComponent implements OnInit {
 
   onSubmit($event: Event) {
     $event.preventDefault();
-    const formData = new FormData();
-    formData.append('file', this.uploadedImage, this.uploadedImage.name);
-    console.log(formData);
+    this.imageService.upload(this.uploadedImage);
   }
 }
