@@ -9,6 +9,7 @@ import { ImageService } from 'src/app/services/image.service';
 export class HomeComponent implements OnInit {
   uploadedImage!: File;
   uploadedImageSrc = '';
+  resultImageSrc = '';
 
   constructor(private imageService: ImageService) {}
 
@@ -32,6 +33,8 @@ export class HomeComponent implements OnInit {
 
   onSubmit($event: Event) {
     $event.preventDefault();
-    this.imageService.upload(this.uploadedImage);
+    this.imageService.upload(this.uploadedImage).subscribe((result) => {
+      this.resultImageSrc = result.file;
+    });
   }
 }

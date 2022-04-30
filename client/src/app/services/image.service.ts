@@ -12,6 +12,6 @@ export class ImageService {
   upload(image: File) {
     const form = new FormData();
     form.append('image', image, image.name);
-    this.http.post(this.apiUrl, form).subscribe(console.log);
+    return this.http.post<{ file: string }>(this.apiUrl, form);
   }
 }
