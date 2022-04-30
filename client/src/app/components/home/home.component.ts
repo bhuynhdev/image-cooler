@@ -34,7 +34,11 @@ export class HomeComponent implements OnInit {
   onSubmit($event: Event) {
     $event.preventDefault();
     this.imageService.upload(this.uploadedImage).subscribe((result) => {
-      this.resultImageSrc = result.file;
+      let reader = new FileReader();
+      reader.onload = () => {
+        this.resultImageSrc = reader.result as string;
+      };
+      reader.readAsDataURL(result);
     });
   }
 }

@@ -10,8 +10,8 @@
   <div class="preview" *ngIf="uploadedImage">
     <img [src]="uploadedImageSrc" alt="Uploaded Image" />
   </div>
-  <div class="result">
-    <p>{{ resultImageSrc }}</p>
+  <div class="result" *ngIf="resultImageSrc">
+    <img class="resultImg" [src]="resultImageSrc" alt="Result Image" />
   </div>
   <button type="submit">Upload</button>
 </form>
