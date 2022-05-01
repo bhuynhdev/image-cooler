@@ -22,6 +22,7 @@ async def root():
 
 @app.post("/upload")
 async def uploadImage(image: UploadFile):
+    source_folder = "./SourceImages/cat999"
     request_object_content = await image.read()
-    output_path = create_photomosaics(BytesIO(request_object_content))
+    output_path = create_photomosaics(BytesIO(request_object_content), source_folder)
     return FileResponse(output_path)
