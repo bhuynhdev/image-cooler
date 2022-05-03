@@ -1,6 +1,7 @@
 <form (submit)="onSubmit($event)">
   <label for="inputFile">File to upload</label>
   <input
+    nbInput
     type="file"
     name="file"
     id="inputFile"
@@ -8,7 +9,7 @@
     (change)="previewImage($event)"
   />
 
-  <button>Upload</button>
+  <button nbButton>Upload</button>
 </form>
 <div class="images">
   <div class="preview" *ngIf="uploadedImage">

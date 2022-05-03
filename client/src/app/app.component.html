@@ -1,5 +1,20 @@
-<main class="home">
-  <h1>Home</h1>
-  <h2>{{ title }}</h2>
-  <app-home></app-home>
-</main>
+<nb-layout>
+
+  <nb-layout-header fixed>
+  <!-- Insert header here -->
+  </nb-layout-header>
+
+  <nb-layout-column>
+    <main class="home">
+      <h1>{{ title }}</h1>
+      <p>Created by Bao Huynh</p>
+      <app-home></app-home>
+    </main>
+    
+  </nb-layout-column>
+
+  <nb-layout-footer fixed>
+  <!-- Insert footer here -->
+  </nb-layout-footer>
+
+</nb-layout>
