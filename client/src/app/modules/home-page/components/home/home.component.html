@@ -19,8 +19,6 @@
   </nb-layout-column>
 
   <nb-layout-column>
-    <div *ngIf="resultImageSrc">
-      <img class="resultImg" [src]="resultImageSrc" alt="Result Image" />
-    </div>
+    <app-image-magnifier [imgSrc]="resultImageSrc"></app-image-magnifier>
   </nb-layout-column>
 </nb-layout>
