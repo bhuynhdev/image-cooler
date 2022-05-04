@@ -1,17 +1,21 @@
 import os
 import json
+from math import ceil
 from PIL import Image
-from utilities import average_RGB, RGB_tuple_to_str
+from utilities import average_RGB, RGB_tuple_to_str, SOURCE_IMG_CROPPED_SIZE
 
 
-def create_photomosaics(inputFile, source_folder, pixelation_step=10, sourceIm_size=100):
+def create_photomosaics(inputFile, source_folder):
     inputIm = Image.open(inputFile)
 
     width, height = inputIm.size
-    expansion = int(sourceIm_size / pixelation_step)
+
+    pixelation_step = min(ceil(width / 100), 12);
+
+    expansion = int(SOURCE_IMG_CROPPED_SIZE / pixelation_step)
     output = Image.new("RGB", (width * expansion, height * expansion))
 
-    cache_path = "./Data/" + os.path.basename(source_folder) + "-cropped-cache.json"
+    cache_path = "./Data/" + os.path.basename(source_folder) + "-cropped-resized-cache.json"
 
     if not os.path.exists(cache_path):
         print("ERROR, cache path not exist")
@@ -29,22 +33,20 @@ def create_photomosaics(inputFile, source_folder, pixelation_step=10, sourceIm_s
             # Find source image that match the component square's color
             source_image_path = find_closest_image(aveRGB, cache_path)
 
-            # Resize then paste the source image found onto output
+            # Paste the source image found onto output
             source_image = Image.open("./SourceImages/" + source_image_path)
-            source_image_resized = source_image.resize(
-                (sourceIm_size, sourceIm_size))
-            output.paste(source_image_resized, (x * expansion, y * expansion))
+            output.paste(source_image, (x * expansion, y * expansion))
             # print("Pasted " + source_image_path)
 
     if output.size[0] > 8000:
-        output = output.resize((8000, 8000))
+        output = output.resize((8000, int(8000 * height/width)))
 
     output_path = ("./Output/" +
                    os.path.basename("result.jpg")[0:-4] +
                    "-mosaics-" +
                    os.path.basename(source_folder)[0:-12] +
                    ".jpg")
-    output.save(output_path)
+    output.save(output_path, optimize=True)
     return output_path
 
 
@@ -73,11 +75,11 @@ def find_closest_image(input_RGBtuple, cache_path):
 
     # Re-fresh the cache
     with open(cache_path, "w") as data:
-        data.write(json.dumps(cache))
+        data.write(json.dumps(cache, index=2))
     # Return file path of the closest match
     return os.path.basename(cache_path)[0:-11] + "/" + min_filename
 
 
 if __name__ == "__main__":
     source_folder = "./SourceImages/dog1000"
-    create_photomosaics("input2.jpg", source_folder)
+    create_photomosaics("test.jpg", source_folder)

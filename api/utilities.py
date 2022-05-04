@@ -1,5 +1,6 @@
 from PIL import Image
 
+SOURCE_IMG_CROPPED_SIZE = 80
 
 def RGB_tuple_to_str(RGB_tuple):
     """Round each R,G,B value to the nearest 10 then return the string representation"""
