@@ -18,7 +18,8 @@
     </div>
   </nb-layout-column>
 
-  <nb-layout-column>
-    <app-image-magnifier [imgSrc]="resultImageSrc"></app-image-magnifier>
+  <nb-layout-column [nbSpinner]="isProcessing" nbSpinnerStatus="primary">
+    <app-image-magnifier *ngIf="!errorMessage" [imgSrc]="resultImageSrc"></app-image-magnifier>
+    <p *ngIf="errorMessage">{{errorMessage}}</p>
   </nb-layout-column>
 </nb-layout>

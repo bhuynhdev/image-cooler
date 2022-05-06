@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ImageService } from 'src/app/services/image.service';
 
@@ -10,6 +11,9 @@ export class HomeComponent implements OnInit {
   uploadedImage!: File;
   uploadedImageSrc = '';
   resultImageSrc = '';
+
+  isProcessing = false;
+  errorMessage = '';
 
   constructor(private imageService: ImageService) {}
 
@@ -33,12 +37,21 @@ export class HomeComponent implements OnInit {
 
   onSubmit($event: Event) {
     $event.preventDefault();
-    this.imageService.upload(this.uploadedImage).subscribe((result) => {
-      let reader = new FileReader();
-      reader.onload = () => {
-        this.resultImageSrc = reader.result as string;
-      };
-      reader.readAsDataURL(result);
+    this.isProcessing = true;
+    this.imageService.upload(this.uploadedImage).subscribe({
+      next: (result) => {
+        let reader = new FileReader();
+        reader.onload = () => {
+          this.resultImageSrc = reader.result as string;
+          this.isProcessing = false;
+        };
+        reader.readAsDataURL(result);
+      },
+      error: (error: HttpErrorResponse) => {
+        this.isProcessing = false;
+        this.errorMessage = error.message;
+        console.log(error);
+      },
     });
   }
 }
