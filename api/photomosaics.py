@@ -75,7 +75,7 @@ def find_closest_image(input_RGBtuple, cache_path):
 
     # Re-fresh the cache
     with open(cache_path, "w") as data:
-        data.write(json.dumps(cache, index=2))
+        data.write(json.dumps(cache, indent=2))
     # Return file path of the closest match
     return os.path.basename(cache_path)[0:-11] + "/" + min_filename
 
