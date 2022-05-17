@@ -7,7 +7,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { NbLayoutModule, NbThemeModule } from '@nebular/theme';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PhotomosaicsModule } from './modules';
+import { HomePageModule, PhotomosaicsModule } from './modules';
 import { ImageService } from './services';
 
 @NgModule({
@@ -22,6 +22,7 @@ import { ImageService } from './services';
     NbEvaIconsModule,
     AppRoutingModule,
     PhotomosaicsModule,
+    HomePageModule,
   ],
   providers: [ImageService],
   bootstrap: [AppComponent],

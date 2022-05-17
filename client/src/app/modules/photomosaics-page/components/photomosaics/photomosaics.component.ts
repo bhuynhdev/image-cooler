@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ImageService } from 'src/app/services/image.service';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-photomosaics-page',
   templateUrl: './photomosaics.component.html',
   styleUrls: ['./photomosaics.component.scss'],
 })
