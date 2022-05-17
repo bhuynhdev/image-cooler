@@ -1,0 +1,25 @@
+<form (submit)="onSubmit($event)">
+  <label for="inputFile">File to upload</label>
+  <input
+    nbInput
+    type="file"
+    name="file"
+    id="inputFile"
+    required
+    (change)="previewImage($event)"
+  />
+
+  <button type="submit" nbButton>Upload</button>
+</form>
+<nb-layout>
+  <nb-layout-column>
+    <div *ngIf="uploadedImage">
+      <img [src]="uploadedImageSrc" alt="Uploaded Image" />
+    </div>
+  </nb-layout-column>
+
+  <nb-layout-column [nbSpinner]="isProcessing" nbSpinnerStatus="primary">
+    <app-image-magnifier *ngIf="!errorMessage" [imgSrc]="resultImageSrc"></app-image-magnifier>
+    <p *ngIf="errorMessage">{{errorMessage}}</p>
+  </nb-layout-column>
+</nb-layout>
