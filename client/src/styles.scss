@@ -1,11 +1,6 @@
-@use 'themes' as *;
-
-@use '@nebular/theme/styles/globals' as *;
-
-@include nb-install() {
-  @include nb-theme-global();
-};
-/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 // CSS reset by https://piccalil.li/blog/a-modern-css-reset/
 /* Box sizing rules */
@@ -30,8 +25,8 @@ dd {
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
+ul[role="list"],
+ol[role="list"] {
   list-style: none;
 }
 
@@ -70,9 +65,9 @@ select {
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
-   scroll-behavior: auto;
+    scroll-behavior: auto;
   }
-  
+
   *,
   *::before,
   *::after {
@@ -82,4 +77,3 @@ select {
     scroll-behavior: auto !important;
   }
 }
-
