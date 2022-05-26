@@ -1,5 +1,9 @@
 <section id="hero" class="hero">
-  <h1 class="mat-display-4">😎 Image COOLER</h1>
-  <p class="mat-title">Make your images extra <em>FABULOUS</em> with awesome effects</p>
+  <h1 [ngClass]="isSmallScreen ? 'mat-headline' : 'mat-display-4'">
+    😎 Image COOLER
+  </h1>
+  <p [ngClass]="isSmallScreen ? 'mat-subheading-1' : 'mat-title'">
+    Make your images extra <em>FABULOUS</em> with awesome effects
+  </p>
   <a mat-flat-button color="primary" routerLink="/photomosaics">Photomosaics</a>
 </section>
