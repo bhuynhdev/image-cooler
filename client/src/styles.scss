@@ -1,5 +1,10 @@
-body {
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+// Some CSS defaults
+:root {
+  --padding-x: 2em;
+}
+
+section {
+  padding: 3em var(--padding-x);
 }
 
 // CSS reset by https://piccalil.li/blog/a-modern-css-reset/

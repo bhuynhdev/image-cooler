@@ -1,9 +1,9 @@
-<section id="hero" class="hero">
+<section id="hero" class="hero" aria-label="Hero">
   <h1 [ngClass]="isSmallScreen ? 'mat-headline' : 'mat-display-4'">
     <span aria-hidden="true">😎</span> Image COOLER
   </h1>
-  <p [ngClass]="isSmallScreen ? 'mat-subheading-1' : 'mat-title'">
-    Make your images extra <em>FABULOUS</em> with awesome effects
-  </p>
-  <a mat-flat-button color="primary" routerLink="/photomosaics">Photomosaics</a>
+  <div [ngClass]="isSmallScreen ? 'mat-subheading-1' : 'mat-title'">
+    <p>Create <em>FABULOUS</em> Photomosaics images comprised from THOUSANDS smaller photos</p>
+  </div>
+  <a mat-flat-button color="primary" routerLink="/photomosaics" class="cta-button">Upload your image!</a>
 </section>
