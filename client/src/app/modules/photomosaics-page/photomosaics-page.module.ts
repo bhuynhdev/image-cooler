@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PhotomosaicsPage } from './components/photomosaics/photomosaics.component';
+import { PhotomosaicsPageComponent } from './photomosaics.component';
 
 import { ImageMagnifierComponent } from './components/image-magnifier/image-magnifier.component';
 
 @NgModule({
-  declarations: [PhotomosaicsPage, ImageMagnifierComponent],
+  declarations: [PhotomosaicsPageComponent, ImageMagnifierComponent],
   imports: [CommonModule],
-  exports: [PhotomosaicsPage],
+  exports: [PhotomosaicsPageComponent],
 })
 export class PhotomosaicsModule {}

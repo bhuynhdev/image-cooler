@@ -7,7 +7,7 @@ import { ImageService } from 'src/app/services/image.service';
   templateUrl: './photomosaics.component.html',
   styleUrls: ['./photomosaics.component.scss'],
 })
-export class PhotomosaicsPage implements OnInit {
+export class PhotomosaicsPageComponent implements OnInit {
   uploadedImage!: File;
   uploadedImageSrc = '';
   resultImageSrc = '';

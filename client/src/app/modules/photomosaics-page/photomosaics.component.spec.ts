@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PhotomosaicsPage } from './photomosaics.component';
+import { PhotomosaicsPageComponent } from './photomosaics.component';
 
 describe('HomeComponent', () => {
-  let component: PhotomosaicsPage;
-  let fixture: ComponentFixture<PhotomosaicsPage>;
+  let component: PhotomosaicsPageComponent;
+  let fixture: ComponentFixture<PhotomosaicsPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PhotomosaicsPage],
+      declarations: [PhotomosaicsPageComponent],
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PhotomosaicsPage);
+    fixture = TestBed.createComponent(PhotomosaicsPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
