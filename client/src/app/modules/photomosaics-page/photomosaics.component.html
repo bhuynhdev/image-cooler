@@ -1,26 +1,39 @@
-<form (submit)="onSubmit($event)">
-  <label for="inputFile">File to upload</label>
-  <input
-    nbInput
-    type="file"
-    name="file"
-    id="inputFile"
-    required
-    (change)="previewImage($event)"
-  />
+<section>
+  <h2>Create your own Photomosaics image</h2>
+  <form (submit)="onSubmit($event)">
+    <label for="inputFile">Upload image</label>
+    <input
+      nbInput
+      type="file"
+      name="file"
+      id="inputFile"
+      required
+      (change)="previewImage($event)"
+    />
+    <button mat-raised-button color="accent" type="submit">Upload</button>
+  </form>
 
-  <button type="submit" nbButton>Upload</button>
-</form>
-<div class="images">
-  <div *ngIf="uploadedImage">
-    <img [src]="uploadedImageSrc" alt="Uploaded Image" />
-  </div>
+  <div class="images">
+    <div *ngIf="uploadedImage">
+      <img [src]="uploadedImageSrc" alt="Uploaded Image" />
+    </div>
 
-  <div>
-    <app-image-magnifier
-      *ngIf="!errorMessage"
-      [imgSrc]="resultImageSrc"
-    ></app-image-magnifier>
-    <p *ngIf="errorMessage">{{ errorMessage }}</p>
+    <ng-container
+      *ngIf="isProcessing; then spinner; else resultImg"
+    ></ng-container>
   </div>
-</div>
+</section>
+
+<ng-template #spinner>
+  <div class="spinner-wrapper">
+    <mat-spinner></mat-spinner>
+  </div>
+</ng-template>
+
+<ng-template #resultImg>
+  <app-image-magnifier
+    *ngIf="!errorMessage"
+    [imgSrc]="resultImageSrc"
+  ></app-image-magnifier>
+  <p *ngIf="errorMessage">{{ errorMessage }}</p>
+</ng-template>

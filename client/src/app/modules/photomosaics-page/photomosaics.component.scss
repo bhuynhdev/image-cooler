@@ -3,6 +3,20 @@
 }
 
 .images {
+  margin-top: 2em;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2em;
+}
+
+.spinner-wrapper {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 30em) {
+  .images {
+    grid-template-columns: 1fr 1fr;
+  }
 }
