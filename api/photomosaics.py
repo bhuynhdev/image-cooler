@@ -10,7 +10,7 @@ def create_photomosaics(inputFile, source_folder):
 
     width, height = inputIm.size
 
-    pixelation_step = min(ceil(width / 100), 12);
+    pixelation_step = ceil(width / 120);
 
     expansion = int(SOURCE_IMG_CROPPED_SIZE / pixelation_step)
     output = Image.new("RGB", (width * expansion, height * expansion))
