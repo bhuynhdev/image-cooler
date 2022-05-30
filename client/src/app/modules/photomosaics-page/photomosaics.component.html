@@ -1,15 +1,40 @@
 <section>
-  <h2>Create your own Photomosaics image</h2>
-  <form (submit)="onSubmit($event)">
-    <label for="inputFile">Upload image</label>
-    <input
-      nbInput
-      type="file"
-      name="file"
-      id="inputFile"
-      required
-      (change)="previewImage($event)"
-    />
+  <h2>
+    Create your own Photomosaics image<span *ngIf="sourceType"
+      >, from thousands of
+    </span>
+    <span *ngIf="sourceType == 'cat'"
+      >Cats <span aria-hidden="true">😺</span></span
+    >
+    <span *ngIf="sourceType == 'dog'"
+      >Dogs <span aria-hidden="true">🐶</span></span
+    >
+  </h2>
+  <form #form="ngForm" (submit)="onSubmit($event, form)" ngNativeValidate>
+    <div class="form-field upload-image">
+      <label for="inputFile">Upload image</label>
+      <input type="file" name="file" (change)="previewImage($event)" required />
+    </div>
+
+    <div class="form-field">
+      <mat-label>Choose what your image will be made of: </mat-label>
+      <mat-form-field appearance="fill">
+        <mat-select
+          name="source"
+          required
+          #sourceSelect="ngModel"
+          [(ngModel)]="sourceType"
+          placeholder="Animal images"
+        >
+          <mat-option value="cat">Cat</mat-option>
+          <mat-option value="dog">Dog</mat-option>
+        </mat-select>
+        <mat-error *ngIf="sourceSelect.errors?.['required']">
+          Source type is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
     <button mat-raised-button color="accent" type="submit">Upload</button>
   </form>
 
@@ -32,8 +57,8 @@
 
 <ng-template #resultImg>
   <app-image-magnifier
-    *ngIf="!errorMessage"
+    *ngIf="!requestError"
     [imgSrc]="resultImageSrc"
   ></app-image-magnifier>
-  <p *ngIf="errorMessage">{{ errorMessage }}</p>
+  <p *ngIf="requestError">{{ requestError }}</p>
 </ng-template>

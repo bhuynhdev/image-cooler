@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ImageService } from 'src/app/services/image.service';
 
 @Component({
@@ -8,12 +9,14 @@ import { ImageService } from 'src/app/services/image.service';
   styleUrls: ['./photomosaics.component.scss'],
 })
 export class PhotomosaicsPageComponent implements OnInit {
+  sourceType: string = '';
+
   uploadedImage!: File;
   uploadedImageSrc = '';
   resultImageSrc = '';
 
   isProcessing = false;
-  errorMessage = '';
+  requestError = '';
 
   constructor(private imageService: ImageService) {}
 
@@ -35,8 +38,11 @@ export class PhotomosaicsPageComponent implements OnInit {
     }
   }
 
-  onSubmit($event: Event) {
+  onSubmit($event: Event, form: NgForm) {
     $event.preventDefault();
+    if (!form.valid) {
+      return;
+    }
     this.isProcessing = true;
     this.imageService.upload(this.uploadedImage).subscribe({
       next: (result) => {
@@ -49,9 +55,10 @@ export class PhotomosaicsPageComponent implements OnInit {
       },
       error: (error: HttpErrorResponse) => {
         this.isProcessing = false;
-        this.errorMessage = error.message;
+        this.requestError = error.message;
         console.log(error);
       },
     });
+    console.log(form.form);
   }
 }
