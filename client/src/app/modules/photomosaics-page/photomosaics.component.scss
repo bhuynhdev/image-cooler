@@ -9,7 +9,7 @@
   gap: 2em;
 }
 
-.spinner-wrapper {
+.result-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,5 +18,9 @@
 @media screen and (min-width: 30em) {
   .images {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .result-wrapper {
+    scroll-margin-top: 5em;
   }
 }
