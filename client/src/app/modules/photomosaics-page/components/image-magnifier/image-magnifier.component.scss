@@ -1,5 +1,10 @@
-.img-magnifier-container {
-  position:relative;
+.container {
+  position: relative;
+}
+
+.imgContent {
+  overflow: hidden;
+  position: relative;
 }
 
 ::ng-deep .img-magnifier-glass {
@@ -10,4 +15,11 @@
   /*Set the size of the magnifier glass:*/
   width: 100px;
   height: 100px;
+}
+
+.toggle-button {
+  position: absolute;
+  top: -3.5em;
+  left: 50%;
+  transform: translateX(-50%)
 }

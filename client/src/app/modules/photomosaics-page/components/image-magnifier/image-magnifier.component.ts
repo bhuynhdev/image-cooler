@@ -8,19 +8,30 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
 export class ImageMagnifierComponent implements OnInit {
   @Input()
   imgSrc: string = '';
+  isMagnifierOn: boolean = false;
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  onImageClick() {
-    this.magnify('magnifiable-image', 4);
+  toggleMagnifier() {
+    if (!this.isMagnifierOn) {
+      this.magnify('magnifiable-image', 4.5);
+    } else {
+      this.removeMagnifierGlass();
+    }
+    this.isMagnifierOn = !this.isMagnifierOn;
   }
 
-  @HostListener('document:keydown.escape')
   removeMagnifierGlass() {
     let glass = document.querySelector('.img-magnifier-glass');
     glass?.remove();
+  }
+
+  @HostListener('document:keydown.escape')
+  turnOffMagnifier() {
+    this.removeMagnifierGlass();
+    this.isMagnifierOn = false;
   }
 
   magnify(imgID: string, zoom: number) {

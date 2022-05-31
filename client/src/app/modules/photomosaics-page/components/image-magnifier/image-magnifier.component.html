@@ -1,3 +1,12 @@
-<div class="img-magnifier-container">
-  <img id="magnifiable-image" [src]="imgSrc" (click)="onImageClick()" />
+<div *ngIf="imgSrc" class="container">
+  <button
+    mat-flat-button
+    color="accent"
+    (click)="toggleMagnifier()"
+    class="toggle-button"
+  >
+    {{ isMagnifierOn ? "Turn Off Magnifier" : "Magnify" }}
+    <span aria-hidden="true">🔍</span>
+  </button>
+  <div class="imgContent"><img id="magnifiable-image" [src]="imgSrc" /></div>
 </div>

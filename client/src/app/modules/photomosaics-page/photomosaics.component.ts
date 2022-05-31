@@ -59,6 +59,5 @@ export class PhotomosaicsPageComponent implements OnInit {
         console.log(error);
       },
     });
-    console.log(form.form);
   }
 }
