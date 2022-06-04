@@ -10,12 +10,12 @@ def create_photomosaics(inputFile, source_folder):
 
     width, height = inputIm.size
 
-    pixelation_step = ceil(width / 120);
+    pixelation_step = ceil(width / 120)
 
     expansion = int(SOURCE_IMG_CROPPED_SIZE / pixelation_step)
     output = Image.new("RGB", (width * expansion, height * expansion))
 
-    cache_path = "./Data/" + os.path.basename(source_folder) + "-cropped-resized-cache.json"
+    cache_path = "./Data/" + os.path.basename(source_folder) + "-resized-cache.json"
 
     if not os.path.exists(cache_path):
         print("ERROR, cache path not exist")
@@ -34,7 +34,7 @@ def create_photomosaics(inputFile, source_folder):
             source_image_path = find_closest_image(aveRGB, cache_path)
 
             # Paste the source image found onto output
-            source_image = Image.open("./SourceImages/" + source_image_path)
+            source_image = Image.open("./ProcessedSource/" + source_image_path)
             output.paste(source_image, (x * expansion, y * expansion))
             # print("Pasted " + source_image_path)
 
@@ -81,5 +81,5 @@ def find_closest_image(input_RGBtuple, cache_path):
 
 
 if __name__ == "__main__":
-    source_folder = "./SourceImages/dog1000"
-    create_photomosaics("test.jpg", source_folder)
+    source_folder = "./SourceImages/danborou-anime-set-0000"
+    create_photomosaics("test-large.jpg", source_folder)

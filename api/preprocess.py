@@ -1,6 +1,7 @@
 import os
 import json
 from pickletools import optimize
+from venv import create
 from PIL import Image
 from PIL.Image import Image as ImgType
 from utilities import average_RGB, SOURCE_IMG_CROPPED_SIZE
@@ -28,8 +29,8 @@ def create_cropped_folder(source_images_folder):
     """ 
     Square cropping all source images in a folder, and save to different folder 
     """
-    cropped_images_folder = "./SourceImages/" + \
-        os.path.basename(source_images_folder) + "-cropped-resized"
+    cropped_images_folder = os.path.join(
+        "./ProcessedSource/", os.path.basename(source_images_folder) + "-resized")
     if not os.path.exists(cropped_images_folder):
         os.makedirs(cropped_images_folder)
         print("Created " + cropped_images_folder)
@@ -76,11 +77,7 @@ def cache_average_RGB_for_folder(source_folder_path):
 
 
 if __name__ == "__main__":
-    source_folder = "./SourceImages/cat999"
-    create_cache(source_folder)
+    source_folders = ["cat999", "dog1000", "danborou-anime-set-0007"]
 
-    source_folder = "./SourceImages/dog1000"
-    create_cache(source_folder)
-
-    source_folder = "./SourceImages/cat-dog-40"
-    create_cache(source_folder)
+    for folder_name in source_folders:
+        create_cache("./SourceImages/" + folder_name)
