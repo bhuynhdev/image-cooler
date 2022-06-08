@@ -11,9 +11,12 @@ export class ImageService {
 
   constructor(private http: HttpClient) {}
 
-  upload(image: File): Observable<Blob> {
+  upload(image: File, srcType: SourceType): Observable<Blob> {
     const form = new FormData();
     form.append('image', image, image.name);
+    form.append('src_type', srcType);
     return this.http.post(this.apiUrl, form, { responseType: 'blob' });
   }
 }
+
+export type SourceType = 'dog' | 'cat' | 'anime';

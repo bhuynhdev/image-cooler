@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ImageService } from 'src/app/services/image.service';
+import { ImageService, SourceType } from 'src/app/services/image.service';
 
 @Component({
   selector: 'app-photomosaics-page',
@@ -9,7 +9,8 @@ import { ImageService } from 'src/app/services/image.service';
   styleUrls: ['./photomosaics.component.scss'],
 })
 export class PhotomosaicsPageComponent implements OnInit {
-  sourceType: string = '';
+  // Binded to the form's ngModel
+  sourceType: SourceType = 'cat';
 
   uploadedImage!: File;
   uploadedImageSrc = '';
@@ -52,7 +53,7 @@ export class PhotomosaicsPageComponent implements OnInit {
     const element = this.resultImageRef.nativeElement;
     element.scrollIntoView({ behavior: 'smooth' });
 
-    this.imageService.upload(this.uploadedImage).subscribe({
+    this.imageService.upload(this.uploadedImage, this.sourceType).subscribe({
       next: (result) => {
         let reader = new FileReader();
         reader.onload = () => {

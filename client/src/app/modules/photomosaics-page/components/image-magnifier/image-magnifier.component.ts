@@ -16,7 +16,7 @@ export class ImageMagnifierComponent implements OnInit {
 
   toggleMagnifier() {
     if (!this.isMagnifierOn) {
-      this.magnify('magnifiable-image', 4.5);
+      this.magnify('magnifiable-image', 5);
     } else {
       this.removeMagnifierGlass();
     }

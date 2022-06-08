@@ -3,12 +3,16 @@
     Create your own Photomosaics image<span *ngIf="sourceType"
       >, from thousands of
     </span>
-    <span *ngIf="sourceType == 'cat'"
+    <span *ngIf="sourceType === 'cat'"
       >Cats <span aria-hidden="true">😺</span></span
     >
-    <span *ngIf="sourceType == 'dog'"
+    <span *ngIf="sourceType === 'dog'"
       >Dogs <span aria-hidden="true">🐶</span></span
     >
+    <span *ngIf="sourceType === 'anime'"
+      >Anime <span aria-hidden="true">🎎</span></span
+    >
+    images
   </h2>
   <form #form="ngForm" (submit)="onSubmit($event, form)" ngNativeValidate>
     <div class="form-field upload-image">
@@ -25,7 +29,7 @@
       <mat-label>Choose what your image will be made of: </mat-label>
       <mat-form-field appearance="fill">
         <mat-select
-          name="source"
+          name="sourceType"
           required
           #sourceSelect="ngModel"
           [(ngModel)]="sourceType"
@@ -33,6 +37,7 @@
         >
           <mat-option value="cat">Cat</mat-option>
           <mat-option value="dog">Dog</mat-option>
+          <mat-option value="anime">Anime</mat-option>
         </mat-select>
         <mat-error *ngIf="sourceSelect.errors?.['required']">
           Source type is required
