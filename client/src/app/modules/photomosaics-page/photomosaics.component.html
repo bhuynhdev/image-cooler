@@ -16,7 +16,7 @@
   </h2>
   <form #form="ngForm" (submit)="onSubmit($event, form)" ngNativeValidate>
     <div class="form-field upload-image">
-      <label for="inputFile">Upload image</label>
+      <label for="inputFile">Upload image </label>
       <input
         type="file"
         name="file"
@@ -47,6 +47,17 @@
 
     <button mat-raised-button color="accent" type="submit">Upload</button>
   </form>
+
+  <div class="notes">
+    <p>
+      *Note: Processing takes longer on bigger input image (can be up to 3
+      minutes)
+    </p>
+    <p>
+      To download the result, you can right-click the result image (or long
+      press if on mobile) and choose "Save Image..."
+    </p>
+  </div>
 
   <div class="images">
     <div *ngIf="uploadedImage">
