@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomePageComponent implements OnInit {
-  breakpointObserver: BreakpointObserver;
+  isServerOK = true;
   isSmallScreen = false;
 
   displayNameMap = new Map([
@@ -18,9 +18,7 @@ export class HomePageComponent implements OnInit {
     [Breakpoints.XLarge, 'XLarge'],
   ]);
 
-  constructor(breakpointObserver: BreakpointObserver) {
-    this.breakpointObserver = breakpointObserver;
-  }
+  constructor(private breakpointObserver: BreakpointObserver) {}
 
   ngOnInit(): void {
     this.breakpointObserver

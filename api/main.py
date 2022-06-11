@@ -19,7 +19,7 @@ app.add_middleware(
 
 @app.get("/")
 async def root():
-    return "Server is running"
+    return "OK"
 
 
 source_type_to_folder_name = {

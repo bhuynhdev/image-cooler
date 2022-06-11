@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomePageModule, PhotomosaicsModule } from './modules';
+import { ErrorPageModule, HomePageModule, PhotomosaicsModule } from './modules';
 import { ImageService } from './services';
 
 @NgModule({
@@ -18,6 +18,7 @@ import { ImageService } from './services';
     AppRoutingModule,
     PhotomosaicsModule,
     HomePageModule,
+    ErrorPageModule,
   ],
   providers: [ImageService],
   bootstrap: [AppComponent],
