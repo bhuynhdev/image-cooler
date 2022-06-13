@@ -1,16 +1,20 @@
+import os
 from io import BytesIO
 
+from dotenv import load_dotenv
 from fastapi import FastAPI, Form, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 
 from photomosaics import create_photomosaics
 
+load_dotenv()
+
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[os.getenv("CLIENT_URL", "*")],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
