@@ -1,8 +1,12 @@
-import os
 import json
+import os
+import time
+import uuid
 from math import ceil
+
 from PIL import Image
-from utilities import average_RGB, RGB_tuple_to_str, SOURCE_IMG_CROPPED_SIZE
+
+from utilities import SOURCE_IMG_CROPPED_SIZE, RGB_tuple_to_str, average_RGB
 
 
 def create_photomosaics(inputFile, source_folder):
@@ -44,11 +48,8 @@ def create_photomosaics(inputFile, source_folder):
     if not os.path.exists("./output"):
         os.makedirs("./output")
 
-    output_path = ("./output/" +
-                   os.path.basename("result.jpg")[0:-4] +
-                   "-mosaics-" +
-                   os.path.basename(source_folder)[0:-12] +
-                   ".jpg")
+    timestr = time.strftime("%y%m%d-%H%M%S-")
+    output_path = "./output/mosaics-" + timestr + uuid.uuid4().hex + ".jpg"
     output.save(output_path, optimize=True)
     return output_path
 
@@ -85,4 +86,4 @@ def find_closest_image(input_RGBtuple, cache_path):
 
 if __name__ == "__main__":
     source_folder = "./SourceImages/danborou-anime-0007"
-    create_photomosaics("test-large.jpg", source_folder)
+    create_photomosaics("test.jpg", source_folder)
