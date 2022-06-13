@@ -41,7 +41,10 @@ def create_photomosaics(inputFile, source_folder):
     if output.size[0] > 8000:
         output = output.resize((8000, int(8000 * height/width)))
 
-    output_path = ("./Output/" +
+    if not os.path.exists("./output"):
+        os.makedirs("./output")
+
+    output_path = ("./output/" +
                    os.path.basename("result.jpg")[0:-4] +
                    "-mosaics-" +
                    os.path.basename(source_folder)[0:-12] +
@@ -81,5 +84,5 @@ def find_closest_image(input_RGBtuple, cache_path):
 
 
 if __name__ == "__main__":
-    source_folder = "./SourceImages/danborou-anime-set-0000"
+    source_folder = "./SourceImages/danborou-anime-0007"
     create_photomosaics("test-large.jpg", source_folder)
