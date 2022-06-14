@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://image-cooler.herokuapp.com',
+  apiUrl: 'https://52.14.68.73',
 };
